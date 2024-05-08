@@ -1,0 +1,44 @@
+#include <iostream>
+#include <cstring> // For strlen()
+
+using namespace std;
+
+int main() {
+    char* str;
+    char* substr;
+    int strSize, substrSize;
+
+    // Get the size of the main string and allocate memory
+    cout << "Enter the size of your main string: ";
+    cin >> strSize;
+    str = new char[strSize + 1]; // +1 for null terminator
+
+    // Get the main string
+    cout << "Enter the main string: ";
+    cin.ignore(); // Clear the input buffer
+    cin.getline(str, strSize + 1);
+
+    // Get the size of the substring and allocate memory
+    cout << "Enter the size of your substring: ";
+    cin >> substrSize;
+    substr = new char[substrSize + 1]; // +1 for null terminator
+
+    // Get the substring
+    cout << "Enter the substring: ";
+    cin.ignore(); // Clear the input buffer
+    cin.getline(substr, substrSize + 1);
+
+    // Search for the substring in the main string
+    char* found = strstr(str, substr);
+    if (found != nullptr) {
+        cout << "Substring found at position: " << (found - str) << endl;
+    } else {
+        cout << "Substring not found." << endl;
+    }
+
+    // Free dynamically allocated memory
+    delete[] str;
+    delete[] substr;
+
+    return 0;
+}
